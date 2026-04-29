@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chreol Change Money Transaction - Convertisseur Officiel</title>
+    <title>CHREOL EMPIRE Change-Money Transaction - Convertisseur Officiel</title>
     <style>
         :root {
             --gold: #d4af37;
@@ -93,6 +93,35 @@
             margin-left: auto;
         }
 
+        /* --- HERO SECTION (PHOTO D'ACCUEIL) --- */
+        /* --- HERO SECTION (PHOTO D'ACCUEIL) --- */
+.hero-banner {
+    width: 50%;
+    max-width: 100px;
+    margin: 20px auto 0 auto;
+    padding: 0 15px;
+    text-align: center;
+    overflow: hidden; /* Empêche l'image de déborder lors de l'agrandissement */
+}
+
+.hero-banner img {
+    width: 100%;
+    max-width: 900px; /* Légèrement plus grand par défaut */
+    border-radius: 20px;
+    border: 1px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    
+    /* Transition pour l'agrandissement fluide */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    cursor: pointer;
+}
+
+/* Effet d'agrandissement au survol */
+.hero-banner img:hover {
+    transform: scale(1.05); /* Agrandissement de 5% */
+    box-shadow: 0 15px 45px rgba(212, 175, 55, 0.3); /* Ajoute une lueur dorée au survol */
+}
+
         /* --- CARD --- */
         .card {
             background: var(--card-bg);
@@ -129,7 +158,7 @@
             border-radius: 50px;
             font-weight: bold;
             transition: 0.3s;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 1.2;
         }
 
@@ -212,118 +241,130 @@
             font-size: 16px;
         }
 
-        @media (max-width: 600px) {
-            .nav-links a {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
-
-            .btn-nav-ws span {
-                display: none;
-            }
+        /* --- FOOTER --- */
+        .creole-footer-card {
+            background-color: rgba(10, 10, 10, 0.98);
+            padding: 30px 15px;
+            border-top: 3px solid #363434;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 100%;
         }
 
-        /* Container principal du footer */
-.creole-footer-card {
-    background-color: rgba(10, 10, 10, 0.98); /* Or professionnel */
-    padding: 30px 15px;
-    border-top: 3px solid #363434; /* Bleu professionnel */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-}
+        .creole-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
-.creole-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
+        .creole-footer-card h2 {
+            color: #dbcdcd;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
 
-.creole-footer-card h2 {
-    color: #dbcdcd;
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.5rem;
-}
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
 
-/* Grille responsive */
-.methods-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
+        .method-item {
+            background: rgb(10, 6, 6);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid #333;
+        }
 
-/* Style des cartes individuelles */
-.method-item {
-    background: rgb(10, 6, 6);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    display: flex;
-    align-items: flex-start;
-    border: 1px solid #eee;
-}
+        .main-method {
+            grid-column: 1 / -1;
+            background: #2a2807;
+            flex-direction: column;
+            border: 1px solid var(--gold);
+        }
 
-.main-method {
-    grid-column: 1 / -1; /* Prend toute la largeur sur PC */
-    background: #554e0d;
-    flex-direction: column;
-    border: 1px solid #b6d4fe;
-}
+        .number {
+            background: var(--gold);
+            color: black;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
 
-.number {
-    background: #0056b3;
-    color: white;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    font-weight: bold;
-    flex-shrink: 0;
-}
+        .instruction-box {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
 
-.instruction-box {
-    margin-top: 10px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
+        .instruction-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
 
-.instruction-box ul {
-    margin: 0;
-    padding-left: 20px;
-}
+        .important-note {
+            margin-top: 25px;
+            text-align: center;
+            color: #d93025;
+            font-weight: bold;
+            padding: 10px;
+            border: 2px dashed #d93025;
+            border-radius: 5px;
+        }
 
-/* Note importante en rouge */
-.important-note {
-    margin-top: 25px;
-    text-align: center;
-    color: #d93025;
-    font-weight: bold;
-    padding: 10px;
-    border: 2px dashed #d93025;
-    border-radius: 5px;
-}
+        /* --- TICKER --- */
+        .ticker {
+            background: #111;
+            border-bottom: 1px solid #333;
+            overflow: hidden;
+            height: 34px;
+            width: 100%;
+        }
 
-/* ══ TICKER ══ */
-.ticker{background:var(--dark2);border-bottom:1px solid var(--border);overflow:hidden;height:34px}
-.ticker-inner{display:flex;animation:tick 24s linear infinite;height:100%}
-.ticker-inner:hover{animation-play-state:paused}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.t-item{white-space:nowrap;padding:0 18px;font-size:11px;border-right:1px solid var(--border);color:var(--text2);display:flex;align-items:center;gap:5px;height:34px}
-.t-item strong{color:var(--gold)}
+        .ticker-inner {
+            display: flex;
+            animation: tick 24s linear infinite;
+            height: 100%;
+        }
 
-/* Ajustements mobile */
-@media (max-width: 600px) {
+        @keyframes tick {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .t-item {
+            white-space: nowrap;
+            padding: 0 18px;
+            font-size: 11px;
+            border-right: 1px solid #333;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            height: 34px;
+        }
+
+        .t-item strong {
+            color: var(--gold);
+        }
+
+        @media (max-width: 600px) {
             .nav-links a {
-                font-size: 12px;
-                padding: 6px 10px;
+                font-size: 11px;
+                padding: 6px 8px;
             }
-
-            .btn-nav-ws span {
-                display: none;
+            .hero-banner img {
+                max-width: 100%;
             }
-}
+        }
     </style>
 </head>
 
@@ -369,11 +410,14 @@
                 </div>
         </div>
     </div>
-    <!-- ══ TICKER ══ -->
+    <!-- ══ Banner ══ -->
+    <div class="hero-banner">
+        <img src="img/chreol_Change_logo.webp" alt="Chreol Empire Change - Leader du transfert" stub="https://via.placeholder.com/800x400?text=Chreol+Empire+Change">
+    </div>
     
-
+    <!-- ══ TICKER ══ -->
     <div class="card">
-        <h1>Chreol Change</h1>
+        <h1>CHREOL EMPIRE Change-Money</h1>
 
         <div class="tabs">
             <div class="tab active" onclick="switchMode('.')">
@@ -539,7 +583,7 @@
             const totalPaye = (mode === 'envoi') ? document.getElementById('res-total').innerText : inpCfa.value + " FCFA";
             const recu = document.getElementById('res-final').innerText;
 
-            const msg = `*CHREOL CHANGE*%0A` +
+            const msg = `*CHREOL EMPIRE CHANGE*%0A` +
                 `--------------------------%0A` +
                 `*Opération :* ${mode === 'envoi' ? 'Envoi vers Afrique' : 'Réception en Europe'}%0A` +
                 `*Montant :* ${inpEur.value} € (${inpCfa.value} FCFA)%0A` +
