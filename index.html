@@ -32,66 +32,150 @@
             min-height: 100vh;
         }
 
-        /* --- NAVIGATION BAR --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: rgba(10, 10, 10, 0.98);
-            border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0 15px;
-            z-index: 1000;
-        }
+       /* --- NOUVELLE NAVIGATION --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px); /* Effet de flou moderne */
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    z-index: 2000;
+}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-        }
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+/* Logo / Marque */
+.nav-logo {
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
 
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: 0.3s;
-            border: 1px solid transparent;
-        }
+/* Liens pour Bureau */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
-        .nav-links a.active-page {
-            border: 1px solid var(--gold);
-            color: var(--gold);
-        }
+.nav-links-wrapper {
+    display: flex;
+    gap: 10px;
+}
 
-        .btn-nav-ws {
-            background: var(--whatsapp);
-            color: white !important;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 12px !important;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            margin-left: auto;
-        }
+.nav-links-wrapper a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.nav-links-wrapper a:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.nav-links-wrapper a.active-page {
+    background: var(--gold);
+    color: #000;
+}
+
+/* Bouton WhatsApp Nav */
+.btn-nav-ws {
+    background: var(--whatsapp);
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.btn-nav-ws:hover {
+    transform: scale(1.05);
+}
+
+/* Menu Burger (Mobile uniquement) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 3000;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    transition: 0.3s;
+}
+
+/* Responsivité Mobile */
+@media (max-width: 850px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Caché à droite */
+        width: 70%;
+        height: 100vh;
+        background: #111;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px;
+        transition: 0.4s;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-menu.active {
+        right: 0; /* Affiche le menu */
+    }
+
+    .nav-links-wrapper {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .nav-links-wrapper a {
+        font-size: 18px;
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+
+    .btn-nav-ws {
+        width: 100%;
+        justify-content: center;
+    }
+}
 
         /* --- HERO SECTION (PHOTO D'ACCUEIL) --- */
         /* --- HERO SECTION (PHOTO D'ACCUEIL) --- */
@@ -369,26 +453,34 @@
 </head>
 
 <body>
-
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="index.html" class="active-page">
-                    <div style="display: inline-block; transform: rotate(0deg); font-size: 18px; margin-right: 5px;">🏠</div>
-                    Accueil
+    <div class="nav-container">
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo">CHREOL EMPIRE</a>
 
-                </a>
+        <!-- Bouton Burger -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Menu de Navigation -->
+        <div class="nav-menu" id="nav-menu">
+            <div class="nav-links-wrapper">
+                <a href="index.html" class="active-page">🏠 Accueil</a>
                 <a href="others.html">➡️ Autres services</a>
             </div>
+            
             <a href="https://wa.me/306973598677" class="btn-nav-ws">
                 <svg width="18" height="18" viewBox="0 0 448 512" fill="white">
-                    <path
-                        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.4 2.4-11.2 2.5-2.5 5.5-6.4 8.3-9.7 2.8-3.3 3.7-5.7 5.5-9.4 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.4 2.4-11.2 2.5-2.5 5.5-6.4 8.3-9.7 2.8-3.3 3.7-5.7 5.5-9.4 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
                 </svg>
-                <span>Contact</span>
+                <span>Contact WhatsApp</span>
             </a>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="creole-container">
         <div class="ticker">
@@ -594,6 +686,28 @@
                 `Je souhaite valider cette opération.`;
 
             window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${msg}`, '_blank');
+
+            <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        
+        // Animation simple du burger (facultatif)
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+        spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
+        spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -7px)' : 'none';
+    });
+
+    // Fermer le menu si on clique sur un lien
+    document.querySelectorAll('.nav-links-wrapper a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+</script>
         }
     </script>
 </body>
