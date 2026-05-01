@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge UBA Officielle - Chreol Empire</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-overlay: rgba(0, 0, 0, 0.85);
+            --orange: #FF6600;
+            --mtn: #FFCC00;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Fond d'écran avec l'image de la carte UBA */
+            background: url('Carte UBA Cameroun pour RECHARGE.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background: var(--dark-overlay);
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .app-container {
+            max-width: 480px;
+            width: 100%;
+            background: #1a1a1a;
+            border: 2px solid var(--gold);
+            border-radius: 30px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+
+        .logo-header { text-align: center; margin-bottom: 25px; }
+        .logo-header img { width: 140px; border-radius: 10px; }
+
+        .trust-badge {
+            background: rgba(226, 5, 53, 0.87);
+            border-left: 4px solid var(--gold);
+            padding: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-size: 12px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; }
+        
+        input, select {
+            width: 100%;
+            padding: 14px;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        input:focus { border-color: var(--gold); outline: none; background: #2a2a2a; }
+
+        /* Calculateur */
+        .calc-box {
+            background: #222;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+        .calc-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+        .total-row { font-size: 20px; font-weight: bold; color: var(--gold); border-top: 1px solid #444; padding-top: 10px; margin-top: 10px; }
+
+        /* Modes de paiement */
+        .payment-methods { display: flex; gap: 10px; margin-bottom: 20px; }
+        .method {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-weight: bold;
+            transition: 0.3s;
+            opacity: 0.6;
+        }
+        .method.active { opacity: 1; transform: scale(1.05); }
+        .om { background: var(--orange); color: white; }
+        .momo { background: var(--mtn); color: black; }
+        .om.active { border-color: white; box-shadow: 0 0 15px var(--orange); }
+        .momo.active { border-color: black; box-shadow: 0 0 15px var(--mtn); }
+
+        .ussd-display {
+            background: #000;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-family: monospace;
+            color: #00BFFF;
+            font-size: 16px;
+            margin-bottom: 20px;
+            display: none;
+            border: 1px dashed #444;
+        }
+
+        .btn-send {
+            background: #25D366;
+            color: white;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay">
+    <div class="app-container">
+        <div class="logo-header">
+            <img src="img/chreol_Change_logo.webp" alt="Chreol Empire"> RECHARGE UBA CAMEROUN
+        </div>
+
+        <div class="trust-badge">
+            🔒 <b>Sécurité :</b> Vos données de carte sont utilisées uniquement pour 
+            identifier le compte à créditer. Nous ne stockons aucune information sensible.
+        </div>
+
+        <div class="input-group">
+            <label>Numéro de Carte (6 premiers)*</label>
+            <input type="text" id="p6" placeholder="Ex: 402156" maxlength="6"
+            oninput="if(this.value.length > 6) this.value = this.value.slice(0, 6);" 
+            required aria-required="true">
+        </div>
+
+        <div class="input-group">
+            <label>Numéro de Carte (4 derniers)*</label>
+            <input type="text" id="d4" placeholder="Ex: 1121" maxlength="4" 
+            oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);" 
+            required aria-required="true">
+        </div>
+
+        <div class="input-group">
+            <label>ID Client Carte (au dos) Indispensable Pour la recharge *</label>
+            <input type="text" id="id_card" 
+            oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);" 
+       placeholder="10 chiffres au dos de la carte" maxlength="10" required aria-required="true">
+        </div>
+
+        <div class="input-group">
+            <label>Montant à créditer (FCFA)</label>
+            <input type="number" id="amt" placeholder="Minimum 1 500 F" oninput="calculer()">
+        </div>
+
+        <label>Choisissez votre mode de paiement</label>
+        <div class="payment-methods">
+            <div class="method om active" onclick="setMethod('OM')">Orange Money</div>
+            <div class="method momo" onclick="setMethod('MOMO')">MTN MoMo</div>
+        </div>
+
+        <div class="calc-box">
+            <div class="calc-row"><span>Crédit UBA :</span> <span id="view_amt">0 F</span></div>
+            <div class="calc-row"><span>Frais de service :</span> <span id="view_fee">0 F</span></div>
+            <div class="calc-row total-row"><span>TOTAL À PAYER :</span> <span id="view_total">0 F</span></div>
+        </div>
+
+        <div class="ussd-display" id="ussd_box">
+            PRocedez au paiement en saississant ce code : <br><b id="ussd_code">#150*...#</b>
+            <br/> Une fois le paiement effectué, apporter la preuve de paiement.
+        </div>
+
+        <button class="btn-send" onclick="validerEtEnvoyer()">Finaliser sur WhatsApp 🟢</button>
+        
+        <p style="font-size: 11px; text-align: center; color: #888; margin-top: 15px;">
+            En cliquant, vous confirmez l'exactitude des informations fournies.<br/>
+            Un conseiller vous contactera sous 15 minutes pour finaliser votre recharge <br/>
+            En cliquant, vous acceptez que <strong>Chreol Empire</strong> puisse utiliser les données de votre <br/>
+            carte pour identifier le compte à créditer. 
+            <br/><br/>Nous ne stockons aucune information sensible. Votre sécurité est notre priorité.
+        </p>
+    </div>
+</div>
+
+<script>
+    let currentMethod = 'OM';
+
+    function setMethod(method) {
+        currentMethod = method;
+        document.querySelectorAll('.method').forEach(m => m.classList.remove('active'));
+        if(method === 'OM') document.querySelector('.om').classList.add('active');
+        else document.querySelector('.momo').classList.add('active');
+        calculer();
+    }
+
+    function calculer() {
+        const amt = parseFloat(document.getElementById('amt').value) || 0;
+        let fee = 0;
+
+        // Grille tarifaire officielle Chreol Empire
+        if (amt >= 1500 && amt <= 20000) fee = 1500;
+        else if (amt > 20000 && amt <= 50000) fee = 2000;
+        else if (amt > 50000 && amt <= 100000) fee = amt * 0.05;
+        else if (amt > 100001 && amt <= 350000) fee = amt * 0.04;
+        else if (amt > 350000 && amt <= 500000) fee = amt * 0.03;
+
+        const total = amt + fee;
+        document.getElementById('view_amt').innerText = amt.toLocaleString() + " F";
+        document.getElementById('view_fee').innerText = fee.toLocaleString() + " F";
+        document.getElementById('view_total').innerText = total.toLocaleString() + " F";
+
+        if(total > 0) {
+            document.getElementById('ussd_box').style.display = "block";
+            const code = (currentMethod === 'OM') 
+                ? `#150*14*518554*692251299*${total}#` 
+                : `*126*14*672416141*${total}#`;
+            document.getElementById('ussd_code').innerText = code;
+        }
+    }
+
+    function validerEtEnvoyer() {
+        // Système d'alertes spécifiques
+        const fields = [
+            { id: 'p6', label: 'les 6 premiers chiffres de la carte' },
+            { id: 'd4', label: 'les 4 derniers chiffres de la carte' },
+            { id: 'id_card', label: 'l\'ID Client au dos de la carte' },
+            { id: 'amt', label: 'le montant de la recharge' }
+        ];
+
+        for (let field of fields) {
+            const val = document.getElementById(field.id).value;
+            if (!val || val == 0) {
+                alert(`⚠️ Information manquante : Veuillez renseigner ${field.label}. C'est essentiel pour identifier votre compte UBA sans erreur.`);
+                document.getElementById(field.id).focus();
+                return;
+            }
+        }
+
+        const msg = `*RECHARGE UBA CHREOL*%0A` +
+                    `--------------------------%0A` +
+                    `💳 Carte : ${document.getElementById('p6').value}******${document.getElementById('d4').value}%0A` +
+                    `🆔 ID : ${document.getElementById('id_card').value}%0A` +
+                    `💰 Montant : ${document.getElementById('amt').value} FCFA%0A` +
+                    `🏦 Paiement : ${currentMethod}%0A` +
+                    `🔥 TOTAL : ${document.getElementById('view_total').innerText}%0A` +
+                    `--------------------------%0A` +
+                    `_Je vous apporte la preuve de paiement pour finaliser ma recharge maintenant._`;
+
+        window.open(`https://wa.me/237697657734?text=${msg}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
