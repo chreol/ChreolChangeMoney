@@ -99,8 +99,8 @@
         }
 
         /* --- FOOTER (STYLE IMAGE) --- */
-        .footer-payment { background: #0a0a0a; width: 100%; padding: 60px 20px; text-align: center; }
-        .footer-payment h2 { color: white; font-size: 22px; margin-bottom: 30px; font-weight: 600; }
+        /* .footer-payment { background: #0a0a0a; width: 100%; padding: 60px 20px; text-align: center; }
+        .footer-payment h2 { color: white; font-size: 22px; margin-bottom: 30px; font-weight: 600; } */
         
         .payment-container { max-width: 1000px; margin: 0 auto; }
         
@@ -140,10 +140,40 @@
         }
 
         @media (max-width: 600px) {
-            /* .nav-links-wrapper { display: none; } On cache les liens texte sur mobile pour garder le bouton transac */
+            /* .nav-links-wrapper { display: none; }  */
+            /* On cache les liens texte sur mobile pour garder le bouton transac */
             .brand-section h1 { font-size: 18px; }
         }
-    </style>
+        .btn-custom {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #000; /* Texte noir */
+    background: linear-gradient(135deg, #C9A84C, #F0D080); /* Dégradé Or */
+    border-radius: 50px; /* Arrondi */
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-custom:hover {
+    transform: translateY(-3px); /* Effet de levée */
+    box-shadow: 0 6px 20px rgba(201, 168, 76, 0.6);
+    background: linear-gradient(135deg, #F0D080, #C9A84C);
+  }
+  /* Footer & Floats */
+    footer { background: #050505; border-top: 1px solid #222; padding: 30px; text-align: center; font-size: 0.8rem; color: #555; }
+    .floating-contact { position: flex; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
+    .float-btn { width: 100px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 20px; }
+    .f-wa { background: #25D366; }
+    .f-call { background: #007bff; }
+
+    
+</style>
 </head>
 
 <body>
@@ -156,11 +186,12 @@
 
             <div class="nav-menu">
                 <div class="nav-links-wrapper">
-                    <!-- <a href="index.html" id="link-home">Accueil</a> -->
-                    <a href="others.html" id="link-services">Autres services</a>
+                    <a href="index.html" id="link-home"  class="active">Accueil</a>
+                    <a href="hors_Cameroun.html" id="link-africa">AFRICA</a>
+                    <a href="others.html" id="link-services">Services</a>
                 </div>
                 <a href="https://wa.me/306973598677" class="btn-nav-transac">
-                    <span>Faire une transaction</span>
+                    <span>J'ai des questions</span>
                 </a>
             </div>
         </div>
@@ -174,17 +205,34 @@
             <div class="t-item">🌍 CFA→EUR <strong>660 F</strong></div>
             <div class="t-item">🟡 MTN Code Marchand <strong>ETS Contant [*126*14*672416141*montant#]</strong></div>
             <div class="t-item">🟠 Orange Code Marchand <strong>Ets Tagny [#150*14*518554*692251299*montant#]</strong></div>
-            <div class="t-item">⏱ Délai <strong>≥ 5 min</strong></div>
+            <div class="t-item">⏱ Délai <strong>≥ 5 minutes</strong></div>
+            <span class="t-item" style="color:var(--gold); font-weight:bold;">⚠️ Important : Toujours envoyer la preuve de paiement pour un traitement rapide !</span>
+            <div class="t-item">💳 Paiement <strong> Mode souhaité</strong></div>
+            <div class="t-item">✅ Details clairs <strong>Montant à recevoir</strong></div>
+            <div class="t-item">🇨🇮 <strong>Côte d'Ivoire</strong></div>
+            <div class="t-item">🇸🇳 <strong>Sénégal</strong></div>
+            <div class="t-item">🇲 <strong>Mali</strong></div>
+            <div class="t-item">🇧 <strong>Burkina Faso</strong></div>
+            <div class="t-item">🇳🇪 <strong>Niger</strong></div>
+            <div class="t-item">🇧 <strong>Bénin</strong></div>
         </div>
     </div>
 
     <!-- CALCULATEUR -->
     <div class="card">
-
+        <a href="hors_Cameroun.html"  style="color:#489e3d; font-size: 12px; margin-top: -10px; margin-bottom: 20px;">
+            <button class="btn-custom">CLIQUEZ ICI POUR AUTRES PAYS</button>
+        </a>
         <div class="brand-section">
             <img src="img/chreol_Change_logo.webp" alt="Logo"> 
-            <h1>CHREOL EMPIRE Change M</h1>
+            <h1>Pour le CAMEROUN suivez les etapes</h1>
+            
         </div>
+        <p style="color:#888; font-size: 13px; margin-top: -10px; margin-bottom: 20px;">Utilisez ce calculateur pour estimer les montants avant de valider sur WhatsApp.</p>
+        <!-- <a href="hors_Cameroun.html"  style="color:#489e3d; font-size: 12px; margin-top: -10px; margin-bottom: 20px;">
+            <button class="btn-custom">CLIQUER ICI POUR AUTRES PAYS</button>
+        </a> -->
+        <br/>
         <div class="tabs">
             <div id="tab-envoi" class="tab active" onclick="switchMode('envoi')">EUR ➔ CFA <br> Envoi Afrique</div>
             <div id="tab-reception" class="tab" onclick="switchMode('reception')">CFA ➔ EUR <br> Reçu Europe</div>
@@ -224,7 +272,8 @@
             </div>
             <div class="input-group">
                 <label>Numéro de téléphone</label>
-                <div class="input-wrapper"><input type="tel" id="ben-tel" placeholder="Ex: 692..."></div>
+                <div class="input-wrapper"><input type="number" oninput="if(this.value.length > 9) this.value = this.value.slice(0, 9);" 
+       placeholder="9 chiffres max" id="ben-tel" placeholder="Ex: 692..."></div>
             </div>
         </div>
 
@@ -268,7 +317,7 @@
                 <div class="small-method-box">
                     <div class="method-number">3</div>
                     <h4>Mobile Money</h4>
-                    <p>Orange, MTN, Wave, Airtel etc.</p>
+                    <p>Orange, MTN, Wave, etc.</p>
                 </div>
                 <div class="small-method-box">
                     <div class="method-number">4</div>
@@ -286,8 +335,13 @@
                 N'oublie pas de m'envoyer la preuve de ton paiement pour un traitement rapide !
             </div>
         </div>
-    <p style="text-align: center; color: #555; margin-top: 30px; font-size: 12px;">© 2026 CHREOL EMPIRE CHANGE - Tous droits réservés.</p>
     </div>
+
+    <footer>
+        <b>CHREOL EMPIRE CHANGE M</b><br>
+        Votre partenaire de confiance pour l'Afrique.<br>
+        &copy; 2026.
+    </footer>
 
     <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/306973598677" class="whatsapp-float">
@@ -348,12 +402,15 @@
             let msg = `*CHREOL EMPIRE CHANGE*%0A--------------------------%0A`;
             msg += `*Opération:* ${mode === 'envoi' ? 'EUR vers CFA' : 'CFA vers EUR'}%0A`;
             msg += `*Montant:* ${inpEur.value} € / ${inpCfa.value} FCFA%0A`;
+            msg += `*Total à payer:* ${document.getElementById('res-total').innerText}%0A`;
+            msg += `*Détails:* ${mode === 'envoi' ? 'Envoi pour bénéficiaire en Afrique' : 'Réception en Europe'}%0A`;
             msg += `*Commission:* ${document.getElementById('res-comm').innerText}%0A`;
 
             if(mode === 'envoi') {
                 const reseau = document.getElementById('ben-reseau').value;
                 const nom = document.getElementById('ben-nom').value;
                 const tel = document.getElementById('ben-tel').value;
+                const finalCfa = document.getElementById('res-final').innerText;
                 if(!nom || !tel) { alert("Veuillez remplir les infos du bénéficiaire"); return; }
                 msg += `--------------------------%0A*BÉNÉFICIAIRE :*%0A*Nom:* ${nom}%0A*Tel:* ${tel}%0A*Réseau:* ${reseau}%0A`;
             }

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHREOL EMPIRE - Transfert Afrique</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --bg: #000;
+            --card: #111;
+            --text: #fff;
+            --green: #25D366;
+            --nav-bg: #0a0a0a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+        /* --- NAVBAR RESPONSIVE --- */
+        nav {
+            background: var(--nav-bg);
+            border-bottom: 1px solid #222;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo { color: var(--gold); font-weight: bold; font-size: 1.2rem; text-decoration: none; }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .nav-links a:hover { color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+        .nav-links .active { background: var(--gold); color: black; font-weight: bold; }
+
+        /* --- HEADER & LOGO ZOOM EFFECT --- */
+        .header-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #0a0a0a, #000);
+        }
+
+        .logo-container {
+            display: inline-block;
+            margin-bottom: 15px;
+            vertical-align: middle;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            animation: zoomInOut 4s infinite ease-in-out;
+        }
+
+        @keyframes zoomInOut {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .header-content { display: inline-block; vertical-align: middle; margin-left: 15px; text-align: left; }
+        h1 { color: var(--gold); font-size: 1.5rem; text-transform: uppercase; margin: 0; }
+        .subtitle { color: #888; font-size: 0.95rem; margin-top: 5px; }
+
+        /* --- FORMULAIRE --- */
+        .container { display: flex; justify-content: center; padding: 20px; padding-bottom: 80px; }
+        .card { background: var(--card); border: 1px solid var(--gold); border-radius: 15px; width: 100%; max-width: 480px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+
+        .group { margin-bottom: 15px; }
+        label { display: block; color: var(--gold); font-size: 0.75rem; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; }
+
+        .input-row { display: flex; gap: 10px; }
+        input, select, textarea { width: 100%; background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; outline: none; }
+        input:focus { border-color: var(--gold); }
+
+        .info-box { background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--gold); padding: 12px; font-size: 0.8rem; margin-top: 10px; display: none; color: #ddd; }
+
+        .recap { background: #050505; border: 1px solid #222; padding: 15px; border-radius: 10px; margin-top: 20px; }
+        .recap-line { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem; }
+        .total { color: #00ff00; font-weight: bold; font-size: 1.1rem; }
+
+        .btn-main { background: var(--green); color: #fff; border: none; width: 100%; padding: 16px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; font-size: 1rem; transition: 0.3s; }
+        .btn-main:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        /* Footer & Floats */
+        footer { background: #050505; border-top: 1px solid #222; padding: 30px; text-align: center; font-size: 0.8rem; color: #555; }
+        .floating-contact { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
+        .float-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 20px; }
+        .f-wa { background: #25D366; }
+        .f-call { background: #007bff; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            nav { flex-direction: column; gap: 15px; }
+            .header-content { text-align: center; margin-left: 0; margin-top: 10px; display: block; }
+            .input-row { flex-direction: column; }
+        }
+        .nav-logo-img { height: 45px; width: 45px; border-radius: 50%; border: 1px solid var(--gold); }
+        /* Taux et Whatsapp buton Nav right */
+        .dot{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:blink 1.4s infinite}
+          .badge-live{background:rgba(201,168,76,.1);border:1px solid var(--border2);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--gold);display:flex;align-items:center;gap:5px;white-space:nowrap}
+          @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+          .wa-nav{display:flex;align-items:center;gap:6px;background:var(--green);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;white-space:nowrap}
+          .wa-nav:hover{background:var(--green-d);transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,211,102,.35)}
+          .nav-right{display:flex;align-items:center;gap:8px}
+          
+
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <a href="#" class="nav-logo">
+        <img src="img/chreol_Change_logo.webp" class="nav-logo-img" alt="Logo">CHREOL CHANGE</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="hors_Cameroun.html" class="active">AFRICA</a></li>
+        <li><a href="others.html">Services</a></li>
+        
+    </ul>
+    <div class="nav-right">
+        <div class="badge-live"><div class="dot"></div>Taux live</div>
+        <button class="wa-nav" onclick="wa('306973598677','Bonjour ChreolChange 🦁 ! Je souhaite effectuer un échange.')">
+          <svg class="wa-ico" width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </button>
+    </div>
+</nav>
+
+<!-- HEADER AVEC LOGO ZOOM -->
+<header class="header-section">
+    <div class="logo-container">
+        <img src="img/chreol_Change_logo.webp" alt="Logo" class="logo-img">
+    </div>
+    <div class="header-content">
+        <h1>TRANSFERT PLUSIEURS PAYS EN AFRIQUE</h1>
+        <p class="subtitle">Envoi sécurisé vers la zone XOF & XAF</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="card">
+        <div class="group">
+            <label>1. Pays de destination</label>
+            <select id="pays" onchange="initCountry()">
+                <option value="" disabled selected>Choisir un pays...</option>
+                <option value="Côte d'Ivoire" data-prefix="+225" data-devise="XOF" data-net="Orange Money, MTN, Moov, Wave">🇨🇮 Côte d'Ivoire</option>
+                <option value="Sénégal" data-prefix="+221" data-devise="XOF" data-net="Orange Money, Free, Wave, Wizall">🇸🇳 Sénégal</option>
+                <option value="Mali" data-prefix="+223" data-devise="XOF" data-net="Orange Money, Moov Money">🇲🇱 Mali</option>
+                <option value="Burkina Faso" data-prefix="+226" data-devise="XOF" data-net="Orange, Moov">🇧🇫 Burkina Faso</option>
+                <option value="Bénin" data-prefix="+229" data-devise="XOF" data-net="MTN, Moov, Celtiis">🇧🇯 Bénin</option>
+                <option value="Niger" data-prefix="+227" data-devise="XOF" data-net="Airtel, Moov, Zamani">🇳🇪 Niger</option>
+                <option value="Guinée Équatoriale" data-prefix="+240" data-devise="XAF" data-net="Muni, Getesa">🇬🇶 Guinée Équatoriale</option>
+                <!-- <option value="Guinée-Bissau" data-prefix="+245" data-devise="XOF" data-net="MTN, Orange">🇬🇼 Guinée-Bissau</option> -->
+                <option value="Congo Brazzaville" data-prefix="+242" data-devise="XAF" data-net="MTN, Airtel">🇨🇬 Congo Brazzaville</option>
+                <!-- <option value="Guinée-Bissau" data-prefix="+xxx" data-devise="xxx" data-net="xxxx">XX Autres pays</option> -->
+            </select>
+        </div>
+
+        <div class="input-row">
+            <div class="group" style="flex:1;">
+                <label>Je souhaite envoyer (EUR)</label>
+                <input type="number" id="eur" placeholder="0.00" oninput="convert(true)">
+            </div>
+            <div class="group" style="flex:1;">
+                <label id="label-reception">Réception du bénéficiaire (CFA)</label>
+                <input type="number" id="local" placeholder="0" oninput="convert(false)">
+            </div>
+        </div>
+
+        <div class="group">
+            <label>2. Réseau & Bénéficiaire</label>
+            <select id="net" style="margin-bottom: 10px;"><option value="">Sélectionner le réseau...</option></select>
+            <label>3. Nom complet du bénéficiaire</label>
+            <input type="text" id="nom" placeholder="Nom Complet du Bénéficiaire">
+        </div>
+
+        <div class="group">
+            <label>4. Téléphone</label>
+            <div style="display: flex; align-items: center; background: #1a1a1a; border-radius: 8px; border: 1px solid #333; padding: 0 10px;">
+                <span id="pref-view" style="color:var(--gold); font-weight:bold; margin-right: 10px;">+xxx</span>
+                <input type="tel" id="tel"
+                oninput="if(this.value.length > 9) this.value = this.value.slice(0, 10 );"
+       placeholder="10 chiffres max"
+                placeholder="Numéro" style="border:none;">
+            </div>
+        </div>
+
+        <div class="group">
+            <label>5. Mode de paiement</label>
+            <select id="pay-mode" onchange="showPayInfo()">
+                <option value="" disabled selected>Comment souhaitez-vous régler la note ?</option>
+                <option value="ESPECE">A- Dépôt en espèce (Restaurant Tenedou 4)</option>
+                <option value="BANQUE">B- Dépôt Bancaire ou IRIS</option>
+                <option value="PAYPAL">C- Dépôt PayPal</option>
+                <option value="AUTRE">D- Autres moyens</option>
+            </select>
+            <div id="box-ESPECE" class="info-box">📍 Déposez l'argent sur le comptoir (Tenedou 4, Athènes)
+                <br/>sur un bout de papier renseignez (Nom/Date/Montant), filmez.</div>
+            <div id="box-BANQUE" class="info-box">🏛 Alphabank: GR... | Pireaus: GR... | IRIS:
+                <br/> Les details Vous seront fournis sur WhatsApp.</div>
+            <div id="box-PAYPAL" class="info-box">💳 E-mail PayPal fourni sur WhatsApp.</div>
+            <div id="box-AUTRE" class="info-box"><textarea id="autre-txt" placeholder="Précisez votre mode de dépôt..."></textarea></div>
+        </div>
+
+        <div class="recap">
+            <div class="recap-line"><span>Frais (3€ / 100€) :</span> <span id="view-frais">0 €</span></div>
+            <div class="recap-line"><span>Total à déposer :</span> <span id="view-total" class="total">0.00 €</span></div>
+            <div class="recap-line"><span>Le bénéficiaire reçoit :</span> <span id="view-final" style="color:var(--gold);">0 -</span></div>
+        </div>
+
+        <button class="btn-main" onclick="sendWA()">SOUMETTRE SUR WHATSAPP</button>
+        <p style="margin-top: 15px; font-size: 0.8rem; color: #555;"><strong>*En cliquant sachez que</strong> :<br>
+            a- Vous acceptez les conditions de service de CHREOL EMPIRE CHANGE M.<br>
+            a- Vous confirmez que les informations saisies sont correctes.<br>
+            b- Vous acceptez les frais de service indiqués.<br>
+            c- Vous comprenez que les transactions sont irréversibles une fois confirmées.<br>
+            d- Vous serez redirigé vers WhatsApp pour finaliser votre commande.
+
+        </p>
+    </div>
+</div>
+
+<footer>
+    <b>CHREOL EMPIRE CHANGE M</b><br>
+    Votre partenaire de confiance pour l'Afrique.<br>
+    &copy; 2026.
+</footer>
+
+<div class="floating-contact">
+    <a href="tel:+306973598677" class="float-btn f-call">📞</a>
+    <a href="https://wa.me/306973598677" class="float-btn f-wa">💬</a>
+</div>
+
+<script>
+    const TAUX = 650;
+    function initCountry() {
+        const s = document.getElementById('pays');
+        const opt = s.options[s.selectedIndex];
+        document.getElementById('label-reception').innerText = "Réception (" + opt.dataset.devise + ")";
+        document.getElementById('pref-view').innerText = opt.dataset.prefix;
+        const nets = opt.dataset.net.split(',');
+        const netSelect = document.getElementById('net');
+        netSelect.innerHTML = '<option value="">Choisir le réseau...</option>';
+        nets.forEach(n => {
+            let o = document.createElement('option');
+            o.value = n.trim(); o.innerText = n.trim();
+            netSelect.appendChild(o);
+        });
+        convert(true);
+    }
+
+    function convert(isEur) {
+        const eurIn = document.getElementById('eur');
+        const locIn = document.getElementById('local');
+        let vEur = parseFloat(eurIn.value) || 0;
+        if(isEur) { locIn.value = Math.round(vEur * TAUX) || ""; }
+        else { vEur = (parseFloat(locIn.value) || 0) / TAUX; eurIn.value = vEur > 0 ? vEur.toFixed(2) : ""; }
+        let f = vEur > 0 ? Math.ceil(vEur / 100) * 3 : 0;
+        let t = vEur + f;
+        let d = document.getElementById('pays').selectedIndex > 0 ? document.getElementById('pays').options[document.getElementById('pays').selectedIndex].dataset.devise : "CFA";
+        document.getElementById('view-frais').innerText = f + " €";
+        document.getElementById('view-total').innerText = t.toFixed(2) + " €";
+        document.getElementById('view-final').innerText = (parseFloat(locIn.value) || 0).toLocaleString() + " " + d;
+    }
+
+    function showPayInfo() {
+        document.querySelectorAll('.info-box').forEach(b => b.style.display = 'none');
+        const val = document.getElementById('pay-mode').value;
+        if(val) document.getElementById('box-' + val).style.display = 'block';
+    }
+
+    function sendWA() {
+        const p = document.getElementById('pays').value;
+        const n = document.getElementById('nom').value;
+        const t = document.getElementById('tel').value;
+        const e = document.getElementById('eur').value;
+        const m = document.getElementById('pay-mode').value;
+        const net = document.getElementById('net').value;
+        if(!p || !n || !t || !e || !m || !net) { alert("⚠️ Champs incomplets."); return; }
+        let payD = document.getElementById('pay-mode').options[document.getElementById('pay-mode').selectedIndex].text;
+        if(m === 'AUTRE') payD += " (" + document.getElementById('autre-txt').value + ")";
+        let msg = `*ORDRE D'ENVOI*%0A🌍 Pays: ${p}%0A👤 Nom: ${n.toUpperCase()}%0A🏧 Réseau: ${net}%0A📞 Tél: ${document.getElementById('pref-view').innerText} ${t}%0A💰 Montant: ${e} €%0A🧾 Frais: ${document.getElementById('view-frais').innerText}%0A💳 TOTAL: ${document.getElementById('view-total').innerText}%0A✨ REÇOIT: ${document.getElementById('view-final').innerText}%0A🏦 PAIEMENT: ${payD}`;
+        window.open(`https://wa.me/306973598677?text=${msg}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
