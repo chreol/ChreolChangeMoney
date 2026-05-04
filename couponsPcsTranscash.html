@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHREOL EMPIRE - Échange de Coupons PCS MASTERCARD ET TRANCASH en CFA XAF</title>
+    <style>
+        :root {
+            --gold: #C9A84C;
+            --gold-bg: rgba(201, 168, 76, 0.1);
+            --dark-bg: #080808;
+            --card-bg: #111111;
+            --text-main: #f0e8d0;
+            --text-muted: #9a8060;
+            --border: rgba(201, 168, 76, 0.25);
+            --green: #25D366;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+
+        .header { text-align: center; margin-bottom: 20px; }
+        .logo-img { width: 130px; height: auto; border-radius: 10px; margin-bottom: 10px; }
+        
+        h2 { font-size: 1.1rem; text-transform: uppercase; color: var(--gold); margin: 0; letter-spacing: 1px; }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 10px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; font-weight: bold; }
+        
+        select, input {
+            width: 100%; padding: 12px; background: #000; border: 1px solid var(--border);
+            color: #fff; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;
+        }
+
+        select:focus, input:focus { border-color: var(--gold); }
+
+        /* Section Client Info */
+        .client-info-section {
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px dashed var(--border);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .section-title { font-size: 11px; color: var(--gold); margin-bottom: 10px; text-align: center; font-weight: bold; }
+
+        .price-display {
+            background: var(--gold-bg); border: 1px solid var(--gold);
+            padding: 20px; text-align: center; border-radius: 15px; margin: 20px 0;
+        }
+        .price-label { font-size: 10px; text-transform: uppercase; color: var(--gold); }
+        .price-amount { font-size: 28px; font-weight: 800; color: #fff; margin-top: 5px; }
+
+        .btn-wa {
+            width: 100%; padding: 18px; background-color: var(--green); color: #fff;
+            border: none; border-radius: 12px; font-size: 16px; font-weight: bold;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-wa:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .fast-note {
+            font-size: 11px; color: #aaa; text-align: center; margin-top: 15px; font-style: italic;
+        }
+
+        footer {
+            margin-top: 30px; text-align: center; color: var(--text-muted); font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="chreol Change logo.webp" alt="Chreol Change Logo" class="logo-img">
+        <h2>Échange de Coupons</h2>
+    </div>
+
+    <!-- Choix du coupon -->
+    <div class="form-group">
+        <label>Type de Coupon</label>
+        <select id="couponType" onchange="calculateExchange()">
+            <option value="pcs">PCS Mastercard (Taux: 450 - Frais 7%)</option>
+            <option value="transcash">Transcash (Taux: 440)</option>
+            <option value="paysafecard">Paysafecard (Taux: 440)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Valeur du coupon (€ Euro)</label>
+        <input type="number" id="euroValue" placeholder="Ex: 50" oninput="calculateExchange()">
+    </div>
+
+    <!-- INFOS RECEPTION UTILISATEUR -->
+    <div class="client-info-section">
+        <div class="section-title">📱 Vos coordonnées de réception Mobile Money</div>
+        <div class="form-group">
+            <label>Nom & Prénom</label>
+            <input type="text" id="userName" placeholder="Ex: Jean Dupont">
+        </div>
+        <div class="form-group">
+            <label>Numéro de téléphone (MTN ou Orange)</label>
+            <input type="tel" id="userPhone" placeholder="Ex: 6xx xxx xxx">
+        </div>
+    </div>
+
+    <div class="price-display">
+        <div class="price-label">Montant que vous recevrez</div>
+        <div class="price-amount" id="totalCfa">0 FCFA</div>
+    </div>
+
+    <!-- CTA Principal -->
+    <button class="btn-wa" onclick="sendOrder()">
+        ✅ Finaliser l'échange maintenant
+    </button>
+
+    <p class="fast-note">⚡ Note : Une fois le code envoyé, votre transaction sera prise en compte le plus rapidement possible.</p>
+</div>
+
+<footer>
+    <p><b>Chreol Empire</b> - Votre Passerelle Financière vers le Monde.</p>
+    <p>© 2026. Rapidité · Sécurité · Fiabilité</p>
+</footer>
+
+<script>
+    function calculateExchange() {
+        const type = document.getElementById('couponType').value;
+        const euro = parseFloat(document.getElementById('euroValue').value) || 0;
+        const display = document.getElementById('totalCfa');
+        
+        let result = 0;
+
+        if (type === "pcs") {
+            // (Valeur - 7% frais) * 450
+            result = (euro * 0.93) * 450;
+        } else {
+            // Valeur * 440
+            result = euro * 440;
+        }
+
+        display.innerText = Math.floor(result).toLocaleString('fr-FR') + " FCFA";
+    }
+
+    function sendOrder() {
+        const type = document.getElementById('couponType').selectedOptions[0].text;
+        const euro = document.getElementById('euroValue').value || "0";
+        const total = document.getElementById('totalCfa').innerText;
+        const name = document.getElementById('userName').value;
+        const phone = document.getElementById('userPhone').value;
+
+        if(!name || !phone || euro <= 0) {
+            alert("Veuillez remplir tous les champs avant de continuer.");
+            return;
+        }
+
+        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger un coupon :\n🎫 Type : ${type}\n💶 Valeur : ${euro}€\n\n💰 Montant à recevoir : ${total}\n\n📍 INFO RÉCEPTION MOBILE MONEY :\n👤 Nom : ${name}\n📞 Numéro : ${phone}\n\nJe vous envoie le code du coupon ci-dessous...`;
+        
+        window.open(`https://wa.me/237697657734?text=${encodeURIComponent(text)}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
