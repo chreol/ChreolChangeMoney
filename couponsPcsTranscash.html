@@ -211,7 +211,7 @@
             return;
         }
 
-        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger des coupons :\n\n🎫 TYPE : ${type}\n💶 VALEUR TOTALE : ${euro}€\n🔑 CODES : ${codes}\n\n💰 MONTANT À RECEVOIR : ${total}\n\n📍 RÉCEPTION :\n👤 NOM : ${name}\n📞 NUMÉRO : ${phone}\n✍🏾 Reseau : ${reso}\n\nMerci de traiter ma transaction rapidement.`;
+        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger des coupons :\n\n🎫 TYPE : ${type}\n💶 VALEUR TOTALE : ${euro}€\n🔑 CODES : ${codes}\n\n💰 MONTANT À RECEVOIR : ${total}\n\n📍 RÉCEPTION :\n✍🏾 Reseau : ${reso}\n👤 NOM : ${name}\n📞 NUMÉRO : ${phone}\n\nMerci de traiter ma transaction rapidement.`;
         
         window.open(`https://wa.me/237697657734?text=${encodeURIComponent(text)}`, '_blank');
     }
