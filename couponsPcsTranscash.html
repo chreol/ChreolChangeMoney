@@ -144,6 +144,13 @@
             <input type="text" id="userName" placeholder="Ex: Jean Luc">
         </div>
         <div class="form-group">
+        <label>Reseau Mobile</label>
+        <select id="reseauType" onchange="calculateExchange()">
+            <option value="om">ORANGE</option>
+            <option value="mtn">MTN</option>
+            <!-- <option value="paysafecard">Paysafecard (Taux: 440)</option> -->
+        </select>
+        <div class="form-group">
             <label>Numéro de téléphone</label>
             <input type="tel" id="userPhone" placeholder="Ex: 683 682 958">
         </div>
@@ -192,6 +199,7 @@
 
     function sendOrder() {
         const type = document.getElementById('couponType').selectedOptions[0].text;
+        const reso = document.getElementById('reseauType').selectedOptions[0].text;
         const euro = document.getElementById('euroValue').value || "0";
         const codes = document.getElementById('couponCodes').value;
         const total = document.getElementById('totalCfa').innerText;
@@ -203,7 +211,7 @@
             return;
         }
 
-        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger des coupons :\n\n🎫 TYPE : ${type}\n💶 VALEUR TOTALE : ${euro}€\n🔑 CODES : ${codes}\n\n💰 MONTANT À RECEVOIR : ${total}\n\n📍 RÉCEPTION :\n👤 NOM : ${name}\n📞 NUMÉRO : ${phone}\n\nMerci de traiter ma transaction rapidement.`;
+        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger des coupons :\n\n🎫 TYPE : ${type}\n💶 VALEUR TOTALE : ${euro}€\n🔑 CODES : ${codes}\n\n💰 MONTANT À RECEVOIR : ${total}\n\n📍 RÉCEPTION :\n👤 NOM : ${name}\n📞 NUMÉRO : ${phone}\n✍🏾 Reseau : ${reso}\n\nMerci de traiter ma transaction rapidement.`;
         
         window.open(`https://wa.me/237697657734?text=${encodeURIComponent(text)}`, '_blank');
     }
