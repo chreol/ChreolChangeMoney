@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/webp" href="img/chreol_Change_logo.webp">
+  <link rel="shortcut icon" href="img/chreol_Change_logo.webp">
+  <link rel="apple-touch-icon" href="img/chreol_Change_logo.webp">
+  <meta name="theme-color" content="#D4AF37">
+  <title>CHREOL EMPIRE - Premium Digital Platform</title>
+
+  <link rel="icon" type="image/webp" href="img/chreol_Change_logo.webp">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --gold: #D4AF37;
+      --dark: #0f0f0f;
+      --card: #161616;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+      background:
+        radial-gradient(circle at top, rgba(212,175,55,0.25), transparent 40%),
+        #050505;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 140px;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 0 20px rgba(212,175,55,0.5));
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 10px 20px;
+      border-radius: 50px;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 70px;
+      line-height: 1.1;
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+
+    h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      color: #bdbdbd;
+      font-size: 20px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 18px 35px;
+      border-radius: 18px;
+      border: none;
+      font-size: 17px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: black;
+      box-shadow: 0 0 25px rgba(212,175,55,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 35px rgba(212,175,55,0.6);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid #333;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 18px 28px;
+      border-radius: 18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .services {
+      padding: 100px 20px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: #9f9f9f;
+      font-size: 18px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: linear-gradient(145deg, #121212, #1d1d1d);
+      border: 1px solid #2b2b2b;
+      border-radius: 30px;
+      padding: 35px;
+      text-align: center;
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: var(--gold);
+      box-shadow: 0 0 35px rgba(212,175,55,0.2);
+    }
+
+    .service-card .icon {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .service-card p {
+      color: #bdbdbd;
+      line-height: 1.7;
+    }
+
+    .testimonials {
+      padding: 100px 20px;
+      background: #0c0c0c;
+    }
+
+    .testimonial-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial {
+      background: #151515;
+      border: 1px solid #2b2b2b;
+      border-radius: 30px;
+      padding: 35px;
+    }
+
+    .testimonial .stars {
+      color: var(--gold);
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .testimonial p {
+      color: #bdbdbd;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .testimonial h4 {
+      color: var(--gold);
+    }
+
+    .cta {
+      padding: 120px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #D4AF37, #FFD95A);
+      color: black;
+    }
+
+    .cta h2 {
+      font-size: 60px;
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+
+    .cta p {
+      font-size: 22px;
+      margin-bottom: 35px;
+    }
+
+    .cta button {
+      background: black;
+      color: white;
+      padding: 20px 45px;
+      border: none;
+      border-radius: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cta button:hover {
+      transform: scale(1.05);
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 70px;
+      height: 70px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 32px;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 0 30px rgba(37,211,102,0.5);
+      z-index: 999;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @media(max-width:768px) {
+      h1 {
+        font-size: 42px;
+      }
+
+      .section-title h2,
+      .cta h2 {
+        font-size: 36px;
+      }
+
+      .hero p,
+      .cta p {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <img src="img/chreol_Change_logo.webp" class="logo" alt="CHREOL EMPIRE">
+
+      <div class="badge">
+        🔥 Plateforme Digitale Premium
+      </div>
+
+      <h1>
+        Le Digital <span>Sans Limites</span>
+      </h1>
+
+      <p>
+        Cartes cadeaux • Crypto • PayPal • Paiements internationaux • Recharge UBA • Support ultra rapide.
+      </p>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="commander()">
+          🚀 Commander Maintenant
+        </button>
+
+        <button class="btn btn-secondary" onclick="support()">
+          💬 Support WhatsApp
+        </button>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">⚡ Livraison Instantanée</div>
+        <div class="stat-box">🔒 Paiement Sécurisé</div>
+        <div class="stat-box">🌍 Disponible Partout</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="section-title">
+      <h2>💎 Services Premium</h2>
+      <p>Tous vos besoins digitaux réunis sur une seule plateforme.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="icon">🎮</div>
+        <h3>Cartes Cadeaux</h3>
+        <p>PSN, Steam, Netflix, Roblox, Xbox, Nintendo et plus.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">₿</div>
+        <h3>Crypto</h3>
+        <p>Bitcoin, USDT, USDC avec transactions rapides.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">💳</div>
+        <h3>PayPal</h3>
+        <p>Achat et vente de soldes PayPal Europe.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="icon">🌍</div>
+        <h3>Paiements</h3>
+        <p>Billets d’avion, train, bateau et achats internationaux.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <div class="section-title">
+      <h2>❤️ Avis Clients</h2>
+      <p>Des centaines de clients satisfaits.</p>
+    </div>
+
+    <div class="testimonial-grid">
+      <div class="testimonial">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>Mes cartes PSN livrées en moins de 5 minutes 🔥</p>
+        <h4>— Kevin M.</h4>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>Service ultra rapide et fiable. Je recommande fortement.</p>
+        <h4>— Brenda T.</h4>
+      </div>
+
+      <div class="testimonial">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>La meilleure plateforme digitale que j’ai utilisée.</p>
+        <h4>— Arnaud P.</h4>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>🚀 Passez au Niveau Supérieur</h2>
+
+    <p>
+      Rejoignez CHREOL EMPIRE aujourd’hui et profitez d’une expérience digitale premium.
+    </p>
+
+    <button onclick="commander()">
+      💬 Commander sur WhatsApp
+    </button>
+  </section>
+
+  <a href="https://wa.me/237697657734" class="floating-whatsapp" target="_blank">
+    💬
+  </a>
+
+  <script>
+    function commander() {
+      const msg = encodeURIComponent(
+        'Bonjour CHREOL EMPIRE, je souhaite commander un service digital.'
+      );
+
+      window.open(`https://wa.me/237697657734?text=${msg}`, '_blank');
+    }
+
+    function support() {
+      const msg = encodeURIComponent(
+        'Bonjour CHREOL EMPIRE, j’ai besoin d’assistance.'
+      );
+
+      window.open(`https://wa.me/237697657734?text=${msg}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
